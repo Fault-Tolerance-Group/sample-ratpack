@@ -12,6 +12,7 @@ apply plugin: "io.ratpack.ratpack-groovy"
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "idea"
 apply plugin: "eclipse"
+apply plugin: "codenarc"
 
 repositories {
   jcenter()
@@ -23,6 +24,16 @@ dependencies {
   runtime 'org.slf4j:slf4j-simple:1.7.21'
 
   testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+}
+
+codenarc {
+  toolVersion = '0.25.2'
+}
+codenarcMain {
+  configFile rootProject.file('gradle/codenarc/codenarc.groovy')
+}
+codenarcTest {
+  configFile rootProject.file('gradle/codenarc/codenarcTest.groovy')
 }
 
 jar.archiveName = "application.jar"
